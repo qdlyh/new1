@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+</head>	
+<style>
+*{padding:0;margin: 0;}
+.box {
+	position:absolute;     
+    height: 50%;
+    margin: auto;
+    top: 0;bottom: 0;left: 20%;
+}
+.top span {
+	display: inline-block;
+	width:365px;
+	height:40px;
+	line-height: 45px;
+	border:solid 1px #cccccc;
+	cursor: pointer;
+	text-align: center;
+	background:#fd8340;
+	font-size: 20px;
+	color: #ffffff;
+	font-weight: bold;
+}
+.box ul {
+	float:left;
+	width:180px;
+	height:400px;
+	border: 1px solid #cccccc;
+	box-shadow: 2px 2px #888888;
+}
+.box ul li {
+	line-height:50px;
+	padding:0 10px;
+	cursor: pointer;
+	font-size: 17px;
+	list-style:none;
+}
+.box .ul1 li{
+	background:#F5F5F5;
+}
+
+.box ul li.active {
+	background: #ffffff;
+}
+.box ul li.active1 {
+	color:#fd8340;
+	border: 1px solid #cccccc;
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+<div class="top">
+	<span>请选择城市</span>
+</div>
+	<div class="box-ul">
+		<ul class="ul1"></ul>
+		<ul class="ul2"></ul>
+	</div>
+</div>
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script type="text/javascript">
+var dataJson = {
+	"option": [{
+		"id": "1",
+		"name": "全广州",
+		"child": [{
+			"id": "4",
+			"name": "天河",
+		}, {
+			"id": "5",
+			"name": "海珠",
+		}, {
+			"id": "6",
+			"name": "越秀",
+		}, {
+			"id": "7",
+			"name": "南沙区",
+		}, {
+			"id": "8",
+			"name": "白云",
+		}, {
+			"id": "9",
+			"name": "荔湾",
+		}, {
+			"id": "10",
+			"name": "番禺",
+		}]
+	}, {
+		"id": "2",
+		"name": "天河",
+		"child": [{
+			"id": "4",
+			"name": "全天河",
+		}, {
+			"id": "152",
+			"name": "东圃",
+		}, {
+			"id": "153",
+			"name": "车陂",
+		}, {
+			"id": "154",
+			"name": "珠吉",
+		}, {
+			"id": "155",
+			"name": "黄村",
+		},  {
+			"id": "156",
+			"name": "棠下",
+		},  {
+			"id": "1057",
+			"name": "天河公园",
+		}, {
+			"id": "1058",
+			"name": "天河客运站",
+		}]
+	}, {
+		"id": "3",
+		"name": "海珠",
+		"child": [{
+			"id": "200",
+			"name": "全海珠",
+		}, {
+			"id": "201",
+			"name": "新港",
+		}, {
+			"id": "202",
+			"name": "滨江",
+		}, {
+			"id": "203",
+			"name": "素社",
+		}, {
+			"id": "204",
+			"name": "海幢",
+		}, {
+			"id": "205",
+			"name": "琶洲",
+		}, {
+			"id": "1076",
+			"name": "赤岗",
+		}, {
+			"id": "1077",
+			"name": "华南西",
+		}]
+	}, {
+		"id": "256",
+		"name": "越秀",
+		"child": [{
+			"id": "258",
+			"name": "全越秀",
+		}, {
+			"id": "259",
+			"name": "西门口",
+		}, {
+			"id": "260",
+			"name": "公圆前",
+		}, {
+			"id": "261",
+			"name": "农讲所",
+		}, {
+			"id": "390",
+			"name": "烈士陵园",
+		}, {
+			"id": "391",
+			"name": "东山口",
+		}, {
+			"id": "392",
+			"name": "杨箕",
+		}]
+	}, {
+		"id": "308",
+		"name": "南沙区",
+		"child": [{
+			"id": "309",
+			"name": "黄阁汽车城",
+		}, {
+			"id": "310",
+			"name": "黄阁",
+		}, {
+			"id": "310",
+			"name": "蕉门站",
+		},{
+			"id": "312",
+			"name": "金洲站",
+		}]
+	}, {
+		"id": "470",
+		"name": "白云",
+		"child": [{
+			"id": "471",
+			"name": "全白云",
+		}, {
+			"id": "472",
+			"name": "机场南站",
+		}, {
+			"id": "473",
+			"name": "龙龟",
+		}, {
+			"id": "474",
+			"name": "嘉禾望岗",
+		}]
+	},  {
+		"id": "471",
+		"name": "荔湾",
+		"child": [{
+			"id": "531",
+			"name": "全荔湾",
+		}, {
+			"id": "532",
+			"name": "芳村",
+		}, {
+			"id": "533",
+			"name": "坦尾",
+		},  {
+			"id": "534",
+			"name": "中山八",
+		},   {
+			"id": "535",
+			"name": "西场",
+		},  {
+			"id": "536",
+			"name": "滘口",
+		}]
+	},
+	{
+		"id": "530",
+		"name": "番禺",
+		"child": [{
+			"id": "531",
+			"name": "全番禺",
+		}, {
+			"id": "532",
+			"name": "番禺广场",
+		}, {
+			"id": "533",
+			"name": "市桥",
+		},  {
+			"id": "534",
+			"name": "汉溪长隆",
+		},  {
+			"id": "536",
+			"name": "大石",
+		}]
+	}]
+} 
+$('span', $('.top')).on('click', function() {
+		fillData();
+});
+$('ul.ul1', $('.box')).on('click', 'li', function() {
+	$(this).addClass('active').siblings().removeClass('active');
+	fillData($(this).index());	
+});
+$('ul.ul2', $('.box')).on('click', 'li', function() {
+	$(this).addClass('active1').siblings().removeClass('active1');
+	fillData(l1, $(this).index());	
+});
+var l1 = 0,
+	l2 = 0;
+function fillData(l1, l2) {
+	var temp_html = "";
+	if (typeof(dataJson.option) != 'undefined' && arguments.length == 0) {
+		$.each(dataJson.option, function(i, pro) {
+			temp_html += '<li val="' + pro.id + '">' + pro.name + '</li>';
+		});
+	} else if (typeof(dataJson.option[l1].child) != 'undefined' && arguments.length == 1) {
+		$.each(dataJson.option[l1].child, function(i, pro) {
+			temp_html += '<li val="' + pro.id + '">' + pro.name + '</li>';
+		});
+	}
+	$('.box ul:eq(' + arguments.length + ')').html(temp_html);
+}
+</script>
+</div>
+</body>
+</html>
