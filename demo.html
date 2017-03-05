@@ -4,39 +4,35 @@
 	<meta charset="UTF-8">
 	<title>demo</title>
 </head>	
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <style>
 *{padding:0;margin: 0;}
-.box {
-	position:absolute;     
-    height: 50%;
-    margin: auto;
-    top: 0;bottom: 0;left: 20%;
-}
 .top span {
 	display: inline-block;
-	width:365px;
-	height:40px;
-	line-height: 45px;
+	width:23rem;
+	height: 2rem;
+	line-height:2rem;
 	border:solid 1px #cccccc;
 	cursor: pointer;
 	text-align: center;
 	background:#fd8340;
-	font-size: 20px;
+	font-size: 1rem;
 	color: #ffffff;
 	font-weight: bold;
 }
 .box ul {
 	float:left;
-	width:180px;
-	height:400px;
+	width:11.5rem;
+	height:20rem;
 	border: 1px solid #cccccc;
 	box-shadow: 2px 2px #888888;
+	display: none;
 }
 .box ul li {
-	line-height:50px;
+	line-height:2.5rem;
 	padding:0 10px;
 	cursor: pointer;
-	font-size: 17px;
+	font-size: 1.2rem;
 	list-style:none;
 }
 .box .ul1 li{
@@ -50,14 +46,35 @@
 	color:#fd8340;
 	border: 1px solid #cccccc;
 }
+
+   @media screen and (min-width:320px) and ( max-width:568px){
+               html{
+                font-size:13px;
+              }
+        }
+          @media screen and (min-width:414px) and ( max-width:736px){
+               html{
+                font-size:17.5px;
+              }
+        }
+              @media screen and (min-width:737px) and ( max-width:1280px){
+               html{
+                font-size:30px;
+              }
+        }
+              @media screen and (min-width:1281px){
+               html{
+                font-size:16px;
+              }
+        }
 </style>
 </head>
 
 <body>
-<div class="box">
 <div class="top">
 	<span>请选择城市</span>
 </div>
+<div class="box">
 	<div class="box-ul">
 		<ul class="ul1"></ul>
 		<ul class="ul2"></ul>
@@ -248,7 +265,8 @@ var dataJson = {
 		}]
 	}]
 } 
-$('span', $('.top')).on('click', function() {
+$('.top').on('click', function() {
+	$('.box').find('ul').show();
 		fillData();
 });
 $('ul.ul1', $('.box')).on('click', 'li', function() {
